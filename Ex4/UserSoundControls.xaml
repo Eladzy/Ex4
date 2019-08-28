@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Ex4.UserSoundControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ex4"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!-- <UserControl.Resources>
+        <local:ViewModelValues x:Key="vmv"/>
+        <Style TargetType="Slider">
+           <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding IsError}" ></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>-->
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="mainSlider" IsSnapToTickEnabled="True" Grid.Column="1" Value="{Binding CurrentValue, Mode=OneTime}" Minimum="0" Maximum="{Binding MaxValue}"  Width="400" Height="20"/>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <Label x:Name="CurrentValueLbl" Content="{Binding Value, ElementName=mainSlider}" Foreground="{Binding ElementName=mainSlider, Path=Value,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"  Width="30"  HorizontalAlignment="Center"/>
+            <Label x:Name="separationLbl" Content="/" Width="30" Foreground="{Binding ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label x:Name="MaxValueLbl"  Content="{Binding Maximum,ElementName=mainSlider}" Foreground="{Binding ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Width="30" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+        </StackPanel>
+        <TextBlock Text="{Binding ControllerType, ConverterParameter=text}" Grid.Column="0" x:Name="nameBlock" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="50"></TextBlock>
+    </Grid>
+</UserControl>
